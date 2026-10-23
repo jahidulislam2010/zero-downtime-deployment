@@ -1,0 +1,20 @@
+name: Build and validate deployment images
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Build Blue v1 image
+        run: docker build -t blue-green-v1 ./app/v1
+      - name: Build Green v2 image
+        run: docker build -t blue-green-v2 ./app/v2
+      - name: Build Nginx reverse proxy image
+        run: docker build -t blue-green-nginx ./nginx
