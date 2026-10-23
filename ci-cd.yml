@@ -1,5 +1,4 @@
-name: Build and validate deployment images
-
+name: .github/workflows/ci-cd.yml.
 on:
   push:
     branches: [ "main" ]
